@@ -38,7 +38,8 @@ class IslandService : Service() {
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, PixelFormat.TRANSLUCENT)
         lp.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
-        lp.y = dp(6)   // Redmi Note 12 Pro: ortadaki delik
+        val sb = resources.getIdentifier("status_bar_height", "dimen", "android")
+        lp.y = if (sb > 0) resources.getDimensionPixelSize(sb) else dp(28)
 
         root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
